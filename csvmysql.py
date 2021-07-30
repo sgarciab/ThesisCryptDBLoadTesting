@@ -1,5 +1,11 @@
 import mysql.connector
 import pandas as pd
+import math
+
+def replaceNanValueForNull(value):
+    if math.isnan(value):
+        return 'NULL'
+    return value    
 
 chunksize = 100
 with pd.read_csv('../CHARTEVENTS.csv', chunksize=chunksize) as reader:
@@ -15,23 +21,23 @@ with pd.read_csv('../CHARTEVENTS.csv', chunksize=chunksize) as reader:
                 f.write(str(counter)+";")
             print(str(counter))
             print(tuplevar)
-            row_id = tuplevar[0]
-            subject_id = tuplevar[1]
-            hadm_id = tuplevar[2]
-            icustay_id = tuplevar[3]
+            row_id = replaceNanValueForNull(tuplevar[0])
+            subject_id = replaceNanValueForNull(tuplevar[1])
+            hadm_id = replaceNanValueForNull(tuplevar[2])
+            icustay_id = replaceNanValueForNull(tuplevar[3])
             item_id = tuplevar[4]
             charttime = tuplevar[5]
-            storetime = tuplevar[6]
-            cgid = tuplevar[7]
+            storetime = replaceNanValueForNull(tuplevar[6])
+            cgid = replaceNanValueForNull(tuplevar[7])
             valuece = tuplevar[8]
-            valuenum = tuplevar[9]
-            valueuom = tuplevar[10]
-            warning = tuplevar[11]
-            error = tuplevar[12]
-            resultstatus = tuplevar[13]
-            stopped = tuplevar[14]
-            alltuple = ()
-            cursor.execute("INSERT INTO CHARTEVENTS VALUES(%s,%s,%s,%s,%s,'%s','%s',%s,'%s',%s,'%s',%s,%s,NULL,NULL)" % tuplevar)
+            valuenum = replaceNanValueForNull(tuplevar[9])
+            valueuom = replaceNanValueForNull(tuplevar[10])
+            warning = replaceNanValueForNull(tuplevar[11])
+            error = replaceNanValueForNull(tuplevar[12])
+            alltuple = (row_id,subject_id, hadm_id, icustay_id,item_id,charttime,storetime,cgid,valuece,valuenum,valueuom,warning,error)
+            print(alltuple)
+            cursor.execute("INSERT INTO CHARTEVENTS VALUES(%s,%s,%s,%s,%s,'%s','%s',%s,'%s',%s,'%s',%s,%s,NULL,NULL)" % alltuple)
         cnx.commit()
         cursor.close()
         cnx.close() 
+
