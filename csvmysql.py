@@ -7,6 +7,11 @@ def replaceNanValueForNull(value):
         return 'NULL'
     return value    
 
+def replaceEmptyStringForNull(value):
+    if not value:
+        return 'NULL'
+    return value   
+
 chunksize = 100
 with pd.read_csv('../CHARTEVENTS.csv', chunksize=chunksize) as reader:
     counter = 0
@@ -27,8 +32,8 @@ with pd.read_csv('../CHARTEVENTS.csv', chunksize=chunksize) as reader:
             icustay_id = replaceNanValueForNull(tuplevar[3])
             item_id = tuplevar[4]
             charttime = tuplevar[5]
-            storetime = replaceNanValueForNull(tuplevar[6])
-            cgid = replaceNanValueForNull(tuplevar[7])
+            storetime = replaceEmptyStringForNull(tuplevar[6])
+            cgid = replaceEmptyStringForNull(tuplevar[7])
             valuece = tuplevar[8]
             valuenum = replaceNanValueForNull(tuplevar[9])
             valueuom = replaceNanValueForNull(tuplevar[10])
