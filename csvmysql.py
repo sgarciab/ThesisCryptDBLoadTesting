@@ -55,6 +55,8 @@ try:
                     except Exception as error:
                         with open('log.txt','a') as f:
                             f.write(str(error)+";")
+                        print(error)
+                        print(sys.exc_info())
             cnx.commit()
             cursor.close()
             cnx.close() 
