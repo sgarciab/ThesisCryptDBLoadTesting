@@ -47,7 +47,7 @@ try:
                 error = replaceNanValueForNull(tuplevar[12])
                 alltuple = (row_id,subject_id, hadm_id, icustay_id,item_id,charttime,storetime,cgid,valuece,valuenum,valueuom,warning,error)
                 print(alltuple)
-                if counter > 354600:
+                if counter > 652900:
                     query = "INSERT INTO CHARTEVENTS VALUES(%s,%s,%s,%s,%s,'%s','%s',%s,'%s',%s,'%s',%s,%s,NULL,NULL)" % alltuple
                     print(query)
                     try:
