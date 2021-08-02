@@ -9,7 +9,7 @@ def replaceNanValueForNull(value):
     return value    
 
 def replaceEmptyStringForNull(value):
-    if not value or math.isnan(value):
+    if not value:
         return 'NULL'
     return value   
 try:
