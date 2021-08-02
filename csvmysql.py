@@ -34,7 +34,7 @@ try:
                 item_id = tuplevar[4]
                 charttime = tuplevar[5]
                 storetime = replaceEmptyStringForNull(tuplevar[6])
-                cgid = replaceEmptyStringForNull(tuplevar[7])
+                cgid = replaceNanValueForNull(tuplevar[7])
                 valuece = tuplevar[8]
                 valuenum = replaceNanValueForNull(tuplevar[9])
                 valueuom = replaceEmptyStringForNull(tuplevar[10])
@@ -42,7 +42,7 @@ try:
                 error = replaceNanValueForNull(tuplevar[12])
                 alltuple = (row_id,subject_id, hadm_id, icustay_id,item_id,charttime,storetime,cgid,valuece,valuenum,valueuom,warning,error)
                 print(alltuple)
-                if counter > 57400:
+                if counter > 354600:
                     cursor.execute("INSERT INTO CHARTEVENTS VALUES(%s,%s,%s,%s,%s,'%s','%s',%s,'%s',%s,'%s',%s,%s,NULL,NULL)" % alltuple)
             cnx.commit()
             cursor.close()
