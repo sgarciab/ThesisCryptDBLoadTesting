@@ -34,7 +34,7 @@ try:
                 item_id = tuplevar[4]
                 charttime = tuplevar[5]
                 storetime = replaceEmptyStringForNull(tuplevar[6])
-                cgid = replaceNanValueForNull(tuplevar[7])
+                cgid = replaceEmptyStringForNull(tuplevar[7])
                 valuece = tuplevar[8]
                 valuenum = replaceNanValueForNull(tuplevar[9])
                 valueuom = replaceEmptyStringForNull(tuplevar[10])
