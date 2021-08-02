@@ -43,7 +43,9 @@ try:
                 alltuple = (row_id,subject_id, hadm_id, icustay_id,item_id,charttime,storetime,cgid,valuece,valuenum,valueuom,warning,error)
                 print(alltuple)
                 if counter > 354600:
-                    cursor.execute("INSERT INTO CHARTEVENTS VALUES(%s,%s,%s,%s,%s,'%s','%s',%s,'%s',%s,'%s',%s,%s,NULL,NULL)" % alltuple)
+                    query = "INSERT INTO CHARTEVENTS VALUES(%s,%s,%s,%s,%s,'%s','%s',%s,'%s',%s,'%s',%s,%s,NULL,NULL)" % alltuple
+                    print(query)
+                    cursor.execute(query)
             cnx.commit()
             cursor.close()
             cnx.close() 
