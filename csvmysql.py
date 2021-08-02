@@ -9,7 +9,7 @@ def replaceNanValueForNull(value):
     return value    
 
 def replaceEmptyStringForNull(value):
-    print("EMPTYSTRING" + value)
+    print("EMPTYSTRING" + str(value))
     if not value:
         return 'NULL'
     return value   
