@@ -6,10 +6,14 @@ import sys
 def replaceNanValueForNull(value):
     if math.isnan(value):
         return 'NULL'
-    return value    
+    return value
+
+def replaceNanValueForNotNull(value):
+    if math.isnan(value):
+        return 0
+    return value     
 
 def replaceEmptyStringForNull(value):
-    print("EMPTYSTRING" + str(value))
     if not value:
         return 'NULL'
     return value   
@@ -36,7 +40,7 @@ try:
                 charttime = tuplevar[5]
                 storetime = replaceEmptyStringForNull(tuplevar[6])
                 cgid = replaceNanValueForNull(tuplevar[7])
-                valuece = tuplevar[8]
+                valuece = replaceNanValueForNotNull(tuplevar[8])
                 valuenum = replaceNanValueForNull(tuplevar[9])
                 valueuom = replaceEmptyStringForNull(tuplevar[10])
                 warning = replaceNanValueForNull(tuplevar[11])
@@ -46,7 +50,11 @@ try:
                 if counter > 354600:
                     query = "INSERT INTO CHARTEVENTS VALUES(%s,%s,%s,%s,%s,'%s','%s',%s,'%s',%s,'%s',%s,%s,NULL,NULL)" % alltuple
                     print(query)
-                    cursor.execute(query)
+                    try:
+                        cursor.execute(query)
+                    except Exception as error:
+                        with open('log.txt','a') as f:
+                            f.write(str(error)+";")
             cnx.commit()
             cursor.close()
             cnx.close() 
