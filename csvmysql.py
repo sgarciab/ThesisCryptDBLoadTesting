@@ -18,7 +18,7 @@ def replaceEmptyStringForNull(value):
         return 'NULL'
     return value   
 try:
-    chunksize = 100
+    chunksize = 10
     with pd.read_csv('../CHARTEVENTS.csv', chunksize=chunksize) as reader:
         counter = 0
         for chunk in reader:
