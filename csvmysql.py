@@ -22,7 +22,7 @@ try:
     with pd.read_csv('../CHARTEVENTS.csv', chunksize=chunksize) as reader:
         counter = 0
         for chunk in reader:
-            cnx = mysql.connector.connect(user='monty', password='letmein', host='localhost', database='mimicdb', port=3399)
+            cnx = mysql.connector.connect(user='monty', password='letmein', host='54.173.121.41', database='mimicdb_plain', port=3399)
             cursor = cnx.cursor()
             for row in chunk.iterrows():
                 list = row[1].values
@@ -47,7 +47,7 @@ try:
                 error = replaceNanValueForNull(tuplevar[12])
                 alltuple = (row_id,subject_id, hadm_id, icustay_id,item_id,charttime,storetime,cgid,valuece,valuenum,valueuom,warning,error)
                 print(alltuple)
-                if counter > 1697654:
+                if counter < 2070910:
                     query = "INSERT INTO CHARTEVENTS VALUES(%s,%s,%s,%s,%s,'%s','%s',%s,'%s',%s,'%s',%s,%s,NULL,NULL)" % alltuple
                     print(query)
                     try:
