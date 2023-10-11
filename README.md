@@ -16,10 +16,11 @@ TO ACCESS NORMAL MYSQL:
 ```
 
 RUN THESE COMMANDS TO RUN CRYPTDB
-* Server * 
+* Server 
+```
 export CRYPTDB_PASS=letmein
 export CRYPTDB_USER=monty
-
+```
 change configuration (ip server) in mysql-proxy.cnf
 
 
@@ -28,7 +29,7 @@ run:
 ./cdbserver.sh
 ```
 
-* Client * 
+* Client 
 `pwd`/mysql-src/build/client/mysql -umonty -pletmein -h 3.236.211.63 -P3306
 
 Import Dump :
