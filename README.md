@@ -10,7 +10,7 @@ run k6
 k6 run  --vus 100 --duration 60s .\script.js
 ```
 
-TO ACCESS CRYPTDB:
+TO ACCESS NORMAL MYSQL:
 ```
  mysql -uroot -pletmein
 ```
